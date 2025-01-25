@@ -65,16 +65,14 @@ function convertValue(input, type) {
                 result = dec.toString(2);
                 break;
             case 'octal':
-                result = input
-                    .split('')
-                    .map(char => char.charCodeAt(0).toString(8).padStart(3, '0'))
-                    .join(' ');
+                result = dec.toString(8);
                 break;
             case 'base32':
                 result = base32Encode(dec.toString(2));
                 break;
             case 'base64':
-                result = btoa(binToAscii(dec.toString(2)));
+                const utf8String = decimalToUTF8String(dec);
+                result = btoa(utf8String);
                 break;
             default:
                 throw new Error('Unknown conversion type');
@@ -83,6 +81,15 @@ function convertValue(input, type) {
         result = 'Conversion failed. Check your input.';
     }
     return result;
+}
+
+function decimalToUTF8String(dec) {
+    let str = '';
+    while (dec > 0n) {
+        str = String.fromCharCode(Number(dec & 255n)) + str;
+        dec >>= 8n;
+    }
+    return str;
 }
 
 function convertText(input, type) {
