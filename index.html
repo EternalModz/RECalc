@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RECalc</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>RECalc</h1>
+
+        <label for="inputBox">Input Value:</label>
+        <input type="text" id="inputBox" oninput="validateInput(this.value)">
+
+        <div class="checkbox-container">
+            <label>
+                <input type="checkbox" id="textInputMode" onclick="toggleInputMode()"> Use text input (convert text to selected format)
+            </label>
+        </div>
+
+        <label for="conversionType">Conversion Type:</label>
+        <select id="conversionType" onchange="convert()">
+            <option value="hex">Hexadecimal</option>
+            <option value="dec">Decimal</option>
+            <option value="bin">Binary</option>
+            <option value="octal">Octal</option>
+            <option value="base32">Base32</option>
+            <option value="base64">Base64</option>
+        </select>
+
+        <button onclick="convert()">Convert</button>
+        <div class="output" id="output">Result: </div>
+
+        <label for="reverseInputBox">Reverse Translate:</label>
+        <input type="text" id="reverseInputBox" placeholder="e.g., 0x48 0x65 0x6C 0x6C 0x6F">
+        
+        <label for="reverseFormat">Reverse Translate From:</label>
+        <select id="reverseFormat" onchange="reverseTranslate()">
+            <option value="hex">Hexadecimal</option>
+            <option value="bin">Binary</option>
+            <option value="dec">Decimal</option>
+            <option value="octal">Octal</option>
+            <option value="base32">Base32</option>
+            <option value="base64">Base64</option>
+        </select>
+
+        <button onclick="reverseTranslate()">Reverse Translate</button>
+        <div class="output" id="reverseOutput">Reversed Result: </div>
+
+        <label for="mathBox">Math Expression:</label>
+        <input type="text" id="mathBox" placeholder="e.g., 5 + 3 * 2">
+        <button onclick="evaluateMath(document.getElementById('mathBox').value)">Evaluate</button>
+        <div class="output" id="mathOutput">Math Result: </div>
+
+        <button onclick="downloadOutput()">Download Results</button>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
