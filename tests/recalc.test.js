@@ -67,6 +67,8 @@ context.evaluateMath('5 + 3 * 2');
 assertEqual('math precedence', elements.mathOutput.innerText, 'Math Result: 11');
 context.evaluateMath('0x20 << 2');
 assertEqual('math hex shift', elements.mathOutput.innerText, 'Math Result: 128');
+context.evaluateMath('-1 >>> 1');
+assertEqual('math unsigned right shift', elements.mathOutput.innerText, 'Math Result: 2147483647');
 context.evaluateMath('sqrt(81) + pow(2, 3)');
 assertEqual('math helpers', elements.mathOutput.innerText, 'Math Result: 17');
 context.evaluateMath('constructor.constructor("alert(1)")()');

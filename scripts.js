@@ -589,9 +589,9 @@ function createExpressionParser(tokens) {
     function parseShift() {
         let value = parseAdditive();
         while (true) {
-            if (consume('<<')) value <<= parseAdditive();
+            if (consume('>>>')) value >>>= parseAdditive();
+            else if (consume('<<')) value <<= parseAdditive();
             else if (consume('>>')) value >>= parseAdditive();
-            else if (consume('>>>')) value >>>= parseAdditive();
             else return value;
         }
     }
